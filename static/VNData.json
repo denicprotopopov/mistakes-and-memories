@@ -1,0 +1,58 @@
+{
+	"Scene1": {
+		"PAGES": {
+			"Page0": {
+				"Character": "Viola",
+				"PageText": "I can sense that."
+			},
+			"Page1": {
+				"Character": "Viola",
+				"PageText": "Everytime you see a child you want to cry."
+			},
+			"Page2": {
+				"Character": "Kylie",
+				"PageText": "Ms. Smith's quizzes are always harder than Viola's."
+			},
+			"Page3": {
+				"Character": "Anna",
+				"PageText": "Yeah..."
+			},
+			"Page4": {
+				"Character": "Viola",
+				"PageText": "Good luck everyone! I'll be taking the quiz myself.",
+				"Back": "Cube"
+			},
+			"Page5": {
+				"Character": "Viola",
+				"PageText": "..."
+			},
+			"Page6": {
+				"Character": "Viola",
+				"PageText": "........."
+			},
+			"Page7": {
+				"Character": "Anna",
+				"PageText": "Hey, she's having trouble!",
+				"Back": "Drone"
+			},
+			"Page8": {
+				"Character": "Kylie",
+				"PageText": "Yikes..."
+			},
+			"Page9": {
+				"Character": "Me",
+				"PageText": " ",
+				"Options": {
+					"Finish?": "Page10",
+					"Restart?": "Page0"
+				}
+			},
+			"Page10": {
+				"Character": "Me",
+				"Sprite": "Thinking",
+				"PageText": "Thank you for reading!",
+				"NextPage": "End"
+			}
+		}
+	}
+}
