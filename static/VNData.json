@@ -37,7 +37,8 @@
 			},
 			"Page8": {
 				"Character": "Kylie",
-				"PageText": "Yikes..."
+				"PageText": "Yikes...",
+				"Back": "Shed"
 			},
 			"Page9": {
 				"Character": "Me",

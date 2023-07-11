@@ -1,4 +1,4 @@
-import { getCubeScene, getDroneScene } from "./script"
+import { getCubeScene, getDroneScene, getShedScene } from "./script"
 /* **SUPER IMPORTANT**  PUT THE URL OF THE JSON FILE WHERE YOU INSERTED ALL YOUR DATA HERE !! */
 const vnData = '/VNData.json'
 
@@ -147,7 +147,8 @@ document.addEventListener('keydown', (e) => {
 		if (json.Scene1.PAGES[currentPage].hasOwnProperty('Back')) {
 			if (json.Scene1.PAGES[currentPage].Back == "Cube") {
 				getCubeScene()
-			} else if (json.Scene1.PAGES[currentPage].Back == "Drone") { getDroneScene() }
+			} else if (json.Scene1.PAGES[currentPage].Back == "Drone") { getDroneScene() } else if 
+			(json.Scene1.PAGES[currentPage].Back == "Shed") { getShedScene() }
 			else return
 
 
