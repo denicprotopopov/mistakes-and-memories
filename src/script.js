@@ -216,7 +216,7 @@ const renderPass2 = new RenderPass(scene2, camera)
 const renderPass3 = new RenderPass(scene3, camera2)
 // effectComposer.addPass(renderPass1)
 
-const fog = new THREE.Fog('#262837', 1, 5)
+const fog = new THREE.Fog('#bdbebf', 1, 5)
 scene3.fog = fog
 
 const renderPixelatedPass = new RenderPixelatedPass(7, scene3, camera2);

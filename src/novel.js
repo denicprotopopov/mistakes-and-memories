@@ -29,7 +29,7 @@ const $textbox = document.querySelector("#textbox p")
 const $optionsbox = document.querySelector('#optionsbox')
 const $namebox = document.querySelector("#namebox span")
 // const $spritebox = document.querySelector("#spritebox img");
-const $mainbox = document.querySelector('#mainbox')
+// const $mainbox = document.querySelector('#mainbox')
 
 let json, to
 
@@ -147,9 +147,11 @@ document.addEventListener('keydown', (e) => {
 		if (json.Scene1.PAGES[currentPage].hasOwnProperty('Back')) {
 			if (json.Scene1.PAGES[currentPage].Back == "Cube") {
 				getCubeScene()
-			} else if (json.Scene1.PAGES[currentPage].Back == "Drone") { getDroneScene() } else if 
-			(json.Scene1.PAGES[currentPage].Back == "Shed") { getShedScene() }
-			else return
+			} else if (json.Scene1.PAGES[currentPage].Back == "Drone") { 
+				getDroneScene() 
+			} else if (json.Scene1.PAGES[currentPage].Back == "Shed") { 
+				getShedScene()
+			} else return
 
 
 		} else return

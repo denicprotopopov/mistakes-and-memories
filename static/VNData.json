@@ -2,53 +2,58 @@
 	"Scene1": {
 		"PAGES": {
 			"Page0": {
-				"Character": "Viola",
-				"PageText": "I can sense that."
+				"Character": "???",
+				"PageText": "I can sense that.",
+				"Back": "Drone"
 			},
 			"Page1": {
-				"Character": "Viola",
+				"Character": "???",
 				"PageText": "Everytime you see a child you want to cry."
 			},
 			"Page2": {
-				"Character": "Kylie",
-				"PageText": "Ms. Smith's quizzes are always harder than Viola's."
+				"Character": "???",
+				"PageText": "You are not an average person."
 			},
 			"Page3": {
-				"Character": "Anna",
+				"Character": "???",
 				"PageText": "Yeah..."
 			},
 			"Page4": {
-				"Character": "Viola",
-				"PageText": "Good luck everyone! I'll be taking the quiz myself.",
-				"Back": "Cube"
+				"Character": "Skay",
+				"PageText": "I'm Skay, by the way."
+				
 			},
 			"Page5": {
-				"Character": "Viola",
-				"PageText": "..."
+				"Character": "Skay",
+				"PageText": "...",
+				"Back": "Cube"
 			},
 			"Page6": {
-				"Character": "Viola",
+				"Character": "Skay",
 				"PageText": "........."
 			},
 			"Page7": {
-				"Character": "Anna",
-				"PageText": "Hey, she's having trouble!",
-				"Back": "Drone"
+				"Character": "Me",
+				"PageText": "Where am I?"
 			},
 			"Page8": {
-				"Character": "Kylie",
-				"PageText": "Yikes...",
+				"Character": "Me",
+				"PageText": "I am really worried about this.",
 				"Back": "Shed"
 			},
 			"Page9": {
 				"Character": "Me",
+				"PageText": "..."
+			},
+			"Page10": {
+				"Character": "Me",
 				"PageText": " ",
 				"Options": {
-					"Finish?": "Page10",
+					"Finish?": "Page11",
 					"Restart?": "Page0"
 				}
 			},
-			"Page10": {
+			"Page11": {
 				"Character": "Me",
 				"Sprite": "Thinking",
 				"PageText": "Thank you for reading!",
