@@ -17,23 +17,23 @@ const canvas = document.querySelector('canvas.webgl')
 
 
 // Scene
-const scene1 = new THREE.Scene()
-const scene2 = new THREE.Scene()
-const scene3 = new THREE.Scene()
+export const scene1 = new THREE.Scene()
+export const scene2 = new THREE.Scene()
+export const scene3 = new THREE.Scene()
 
 // scene.background = new THREE.Color( 0xff0000 );
 // scene.background = cubeMapLoader
 
-const cubeMapLoader = new THREE.CubeTextureLoader()
-	.setPath('/cubeMaps/')
-	.load([
-		'px.jpg',
-		'nx.jpg',
-		'py.jpg',
-		'ny.jpg',
-		'pz.jpg',
-		'nz.jpg'
-	])
+// const cubeMapLoader = new THREE.CubeTextureLoader()
+// 	.setPath('/cubeMaps/')
+// 	.load([
+// 		'px.jpg',
+// 		'nx.jpg',
+// 		'py.jpg',
+// 		'ny.jpg',
+// 		'pz.jpg',
+// 		'nz.jpg'
+// 	])
 
 /**
  * Cursor
@@ -83,68 +83,68 @@ if ("ontouchstart" in document.documentElement) {
 
 
 
-/**
- * Update Materials
- */
-const updateAllMaterial = () => {
-	scene1.traverse((child) => {
-		if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
-			child.material.envMap = cubeMapLoader
-		}
-	})
+// /**
+//  * Update Materials
+//  */
+// const updateAllMaterial = () => {
+// 	scene1.traverse((child) => {
+// 		if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
+// 			child.material.envMap = cubeMapLoader
+// 		}
+// 	})
 
-	scene2.traverse((child) => {
-		if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
-			child.material.envMap = cubeMapLoader
-		}
-	})
-}
+// 	scene2.traverse((child) => {
+// 		if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
+// 			child.material.envMap = cubeMapLoader
+// 		}
+// 	})
+// }
 
 
 /**
  * Models
  */
-const dracoLoader = new DRACOLoader()
-dracoLoader.setDecoderPath('/draco/')
+// const dracoLoader = new DRACOLoader()
+// dracoLoader.setDecoderPath('/draco/')
 
-const gltfLoader = new GLTFLoader()
-gltfLoader.setDRACOLoader(dracoLoader)
+// const gltfLoader = new GLTFLoader()
+// gltfLoader.setDRACOLoader(dracoLoader)
 
-gltfLoader.load(
-	'/model/drone.glb',
-	(gltf) => {
-		gltf.scene.scale.set(0.25, 0.25, 0.25)
-		gltf.scene.position.y = 1
-		scene1.add(gltf.scene)
+// gltfLoader.load(
+// 	'/model/drone.glb',
+// 	(gltf) => {
+// 		gltf.scene.scale.set(0.25, 0.25, 0.25)
+// 		gltf.scene.position.y = 1
+// 		scene1.add(gltf.scene)
 
-		updateAllMaterial()
-	}
-)
+// 		updateAllMaterial()
+// 	}
+// )
 
-gltfLoader.load(
-	'/model/robot.glb',
-	(gltf) => {
-		gltf.scene.scale.set(0.25, 0.25, 0.25)
-		gltf.scene.position.y = -2
-		scene2.add(gltf.scene)
+// gltfLoader.load(
+// 	'/model/robot.glb',
+// 	(gltf) => {
+// 		gltf.scene.scale.set(0.25, 0.25, 0.25)
+// 		gltf.scene.position.y = -2
+// 		scene2.add(gltf.scene)
 
-		updateAllMaterial()
-	}
-)
+// 		updateAllMaterial()
+// 	}
+// )
 
-gltfLoader.load(
-	'/model/armory.glb',
-	(gltf) => {
-		// gltf.scene.scale.set(0.25, 0.25, 0.25)
-		gltf.scene.rotateY(90)
-		gltf.scene.position.y = -1
-		gltf.scene.position.z = 2
+// gltfLoader.load(
+// 	'/model/armory.glb',
+// 	(gltf) => {
+// 		// gltf.scene.scale.set(0.25, 0.25, 0.25)
+// 		gltf.scene.rotateY(90)
+// 		gltf.scene.position.y = -1
+// 		gltf.scene.position.z = 2
 
-		scene3.add(gltf.scene)
+// 		scene3.add(gltf.scene)
 
-		updateAllMaterial()
-	}
-)
+// 		updateAllMaterial()
+// 	}
+// )
 
 /**
  * Lights
