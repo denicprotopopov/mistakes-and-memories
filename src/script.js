@@ -7,6 +7,11 @@ import { RenderPixelatedPass } from 'three/addons/postprocessing/RenderPixelated
 import { AfterimagePass } from "three/examples/jsm/postprocessing/AfterimagePass"
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 
+// check for common mobile user agents
+if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+    // the user is using a mobile device, so redirect to the mobile version of the website
+    window.location = "mobile/index.html";
+}
 
 /////////////////////////////////////////////////
 //                     Base                    //
@@ -17,11 +22,12 @@ const canvas = document.querySelector('canvas.webgl')
 
 
 // Scene
+const scene0 = new THREE.Scene()
 export const scene1 = new THREE.Scene()
 export const scene2 = new THREE.Scene()
 export const scene3 = new THREE.Scene()
-
-// scene.background = new THREE.Color( 0xff0000 );
+export const scene4 = new THREE.Scene()
+// scene0.background = new THREE.Color( 0xff0000 )
 // scene.background = cubeMapLoader
 
 // const cubeMapLoader = new THREE.CubeTextureLoader()
@@ -153,8 +159,11 @@ const ambientLight = new THREE.AmbientLight(0x404040)
 scene1.add(ambientLight)
 scene2.add(ambientLight)
 scene3.add(ambientLight)
+scene4.add(ambientLight)
 
 const directionalLight = new THREE.DirectionalLight(0xffffff, 0.9)
+const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.9)
+const directionalLight3 = new THREE.DirectionalLight(0xffffff, 0.9)
 directionalLight.castShadow = true
 directionalLight.shadow.mapSize.set(1024, 1024)
 directionalLight.shadow.camera.far = 15
@@ -162,10 +171,13 @@ directionalLight.shadow.camera.left = - 7
 directionalLight.shadow.camera.top = 7
 directionalLight.shadow.camera.right = 7
 directionalLight.shadow.camera.bottom = - 7
-directionalLight.position.set(0, 0, 1)
+directionalLight.position.set(0, 1, 1)
+directionalLight3.position.set(0, 1, 1)
+directionalLight2.position.set(-25, -15, -10)
 scene1.add(directionalLight)
 scene2.add(directionalLight)
 scene3.add(directionalLight)
+scene4.add(directionalLight, directionalLight2, directionalLight3)
 
 
 
@@ -190,11 +202,13 @@ window.addEventListener('resize', () => {
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-const camera2 = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
+const camera2 = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000)
 
+scene0.add(camera)
 scene1.add(camera)
 scene2.add(camera)
 scene3.add(camera2)
+scene4.add(camera2)
 
 
 /**
@@ -211,20 +225,39 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 const effectComposer = new EffectComposer(renderer)
 effectComposer.setSize(sizes.width, sizes.height)
+const renderPass0 = new RenderPass(scene0, camera)
 const renderPass1 = new RenderPass(scene1, camera)
 const renderPass2 = new RenderPass(scene2, camera)
 const renderPass3 = new RenderPass(scene3, camera2)
+const renderPass4 = new RenderPass(scene4, camera)
 // effectComposer.addPass(renderPass1)
 
-const fog = new THREE.Fog('#bdbebf', 1, 5)
+scene4.background = new THREE.Color('#bdbebf')
+const fog = new THREE.Fog('#bdbebf', 2, 5)
+const fog2 = new THREE.Fog('#bdbebf', 1, 100)
 scene3.fog = fog
+scene4.fog = fog2
 
 const renderPixelatedPass = new RenderPixelatedPass(7, scene3, camera2);
+renderPixelatedPass.normalEdgeStrength = 0
+renderPixelatedPass.depthEdgeStrength = 0
+const renderPixelatedPass2 = new RenderPixelatedPass(7, scene4, camera);
 renderPixelatedPass.normalEdgeStrength = 0
 renderPixelatedPass.depthEdgeStrength = 0
 const dotScreenPass = new DotScreenPass(new THREE.Vector2(0, 0), 0, 0.7)
 // effectComposer.addPass(dotScreenPass)
 console.log(effectComposer)
+
+export const getEmptyScene = () => {
+	// effectComposer.removePass(renderPass1)
+	// effectComposer.removePass(renderPass2)
+	// effectComposer.removePass(dotScreenPass)
+	disposeAll()
+	effectComposer.addPass(renderPass0)
+	effectComposer.addPass(dotScreenPass)
+	console.log(effectComposer);
+	console.log('drone');
+}
 
 export const getDroneScene = () => {
 	// effectComposer.removePass(renderPass1)
@@ -261,6 +294,18 @@ export const getShedScene = () => {
 
 }
 
+export const getCityScene = () => {
+	// effectComposer.removePass(renderPass1)
+	// effectComposer.removePass(renderPass2)
+	// effectComposer.removePass(dotScreenPass)
+	disposeAll()
+	console.log(effectComposer)
+	effectComposer.addPass(renderPass4)
+	effectComposer.addPass(renderPixelatedPass2)
+	console.log('city');
+
+}
+
 const disposeAll = () => {
 	for (var i = effectComposer.passes.length - 1; i >= 0; i--) {
 		effectComposer.passes[i].dispose();
@@ -268,7 +313,7 @@ const disposeAll = () => {
 	}
 }
 
-getDroneScene()
+getEmptyScene()
 
 
 /**
@@ -286,8 +331,8 @@ const tick = () => {
 	camera.position.y += (- cursor.y - camera.position.y) * 0.02;
 	camera.position.z = 5 - sizes.width / sizes.height
 
-	camera2.position.x += ((cursor.x)/4 - camera2.position.x);
-	camera2.position.y += (- (cursor.y)/6 - camera2.position.y);
+	camera2.position.x += ((cursor.x)/4 - camera2.position.x) * 0.02;
+	camera2.position.y += (- (cursor.y)/6 - camera2.position.y) * 0.02;
 	camera2.position.z = 5 - sizes.width / sizes.height
 
 	camera.lookAt(0, 0, 0);

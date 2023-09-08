@@ -1,35 +1,14 @@
-import { getCubeScene, getDroneScene, getShedScene } from "./script"
-/* **SUPER IMPORTANT**  PUT THE URL OF THE JSON FILE WHERE YOU INSERTED ALL YOUR DATA HERE !! */
+import { getCubeScene, getDroneScene, getShedScene, getEmptyScene, getCityScene } from "./script"
+
 const vnData = '/VNData.json'
 
 
-// Creates the HTML and inserts it into the document 
-const insertHTML = () => {
-	return `
-        <div id='mainbox'>
-			<div id='spritebox' class='rightalign'>
-				<img src=''>
-			</div>
-			<div id='namebox'>
-					<span>Loading...</span>
-			</div>
-			<div id='textbox'>
-				<p>Loading...</p>
-				<div id='optionsbox'></div>
-			</div>
-		</div>
-    `
-}
-
-const htmlData = insertHTML()
-document.getElementById('VisualNovelEngine').insertAdjacentHTML("beforebegin", htmlData)
 
 // Creates constants based off of the HTML created
 const $textbox = document.querySelector("#textbox p")
 const $optionsbox = document.querySelector('#optionsbox')
 const $namebox = document.querySelector("#namebox span")
-// const $spritebox = document.querySelector("#spritebox img");
-// const $mainbox = document.querySelector('#mainbox')
+
 
 let json, to
 
@@ -96,6 +75,8 @@ const handleOptions = (data) => {
 		})
 	}
 
+	
+
 
 }
 
@@ -123,6 +104,7 @@ const checkPage = (data) => {
 		if (data.Scene1.PAGES[currentPage].NextPage == "End") return false
 	}
 
+
 	return true
 }
 
@@ -131,7 +113,7 @@ const checkPage = (data) => {
 //Handles page turning when right or left arrow key is pressed 
 document.addEventListener('keydown', (e) => {
 	if (!json) return;
-	if (e.code == "Space" && checkPage(json)) {
+	if (e.code == "Enter" && checkPage(json)) {
 
 		if (json.Scene1.PAGES[currentPage].hasOwnProperty('NextPage')) {
 			currentPage = json.Scene1.PAGES[currentPage].NextPage
@@ -150,10 +132,14 @@ document.addEventListener('keydown', (e) => {
 			} else if (json.Scene1.PAGES[currentPage].Back == "Drone") { 
 				getDroneScene() 
 			} else if (json.Scene1.PAGES[currentPage].Back == "Shed") { 
-				getShedScene()
+				getShedScene() 
+			} else if (json.Scene1.PAGES[currentPage].Back == "City") { 
+				getCityScene()
+			}else if (json.Scene1.PAGES[currentPage].Back == "Empty") {
+				getEmptyScene()
 			} else return
-
-
+	
+	
 		} else return
 	}
 	else return

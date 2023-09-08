@@ -2,50 +2,56 @@
 	"Scene1": {
 		"PAGES": {
 			"Page0": {
-				"Character": "???",
-				"PageText": "I can sense that.",
-				"Back": "Drone"
+				"Character": "Instruction",
+				"PageText": "This is Mistakes and Memories demo. Press ENTER to proceed to the next page.",
+				"Back": "Empty"
 			},
 			"Page1": {
-				"Character": "???",
-				"PageText": "Everytime you see a child you want to cry."
+				"Character": "Instruction",
+				"PageText": "Please use Chromium or Firefox for the best experience.",
+				"Back": "City"
 			},
 			"Page2": {
 				"Character": "???",
-				"PageText": "You are not an average person."
+				"PageText": "Everytime you see a child you want to cry.",
+				"Back": "Drone"
 			},
 			"Page3": {
 				"Character": "???",
-				"PageText": "Yeah..."
+				"PageText": "You are not an average person."
 			},
 			"Page4": {
+				"Character": "???",
+				"PageText": "Yeah..."
+			},
+			"Page5": {
 				"Character": "Skay",
 				"PageText": "I'm Skay, by the way."
 				
 			},
-			"Page5": {
+			"Page6": {
 				"Character": "Skay",
 				"PageText": "...",
 				"Back": "Cube"
 			},
-			"Page6": {
+			"Page7": {
 				"Character": "Skay",
 				"PageText": "........."
 			},
-			"Page7": {
+			"Page8": {
 				"Character": "Me",
 				"PageText": "Where am I?"
 			},
-			"Page8": {
-				"Character": "Me",
-				"PageText": "I am really worried about this.",
-				"Back": "Shed"
-			},
 			"Page9": {
+				"Back": "Shed",
+				"Character": "Me",
+				"PageText": "I am really worried about this."
+			},
+			"Page10": {
 				"Character": "Me",
 				"PageText": "..."
 			},
-			"Page10": {
+			"Page11": {
 				"Character": "Me",
 				"PageText": " ",
 				"Options": {
@@ -53,7 +59,7 @@
 					"Restart?": "Page0"
 				}
 			},
-			"Page11": {
+			"Page12": {
 				"Character": "Me",
 				"Sprite": "Thinking",
 				"PageText": "Thank you for reading!",

@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
-import { scene1, scene2, scene3 } from './script'
+import { scene1, scene2, scene3, scene4 } from './script'
 
 const cubeMapLoader = new THREE.CubeTextureLoader()
 	.setPath('/cubeMaps/')
@@ -87,6 +87,22 @@ gltfLoader.load(
 		gltf.scene.position.z = 2
 
 		scene3.add(gltf.scene)
+
+		updateAllMaterial()
+	}
+)
+
+gltfLoader.load(
+	'/model/city.glb',
+	(gltf) => {
+		// gltf.scene.scale.set(0.25, 0.25, 0.25)
+		gltf.scene.rotateY(160)
+
+		gltf.scene.position.y = -4
+		gltf.scene.position.x = 25
+		gltf.scene.position.z = -7
+
+		scene4.add(gltf.scene)
 
 		updateAllMaterial()
 	}
