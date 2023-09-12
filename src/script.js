@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import Stats from 'three/examples/jsm/libs/stats.module'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer"
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass"
@@ -13,9 +14,16 @@ if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i)
     window.location = "mobile/index.html";
 }
 
+
 /////////////////////////////////////////////////
 //                     Base                    //
 /////////////////////////////////////////////////
+
+
+const stats = new Stats()
+document.body.appendChild(stats.dom)
+
+
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -242,8 +250,8 @@ const renderPixelatedPass = new RenderPixelatedPass(7, scene3, camera2);
 renderPixelatedPass.normalEdgeStrength = 0
 renderPixelatedPass.depthEdgeStrength = 0
 const renderPixelatedPass2 = new RenderPixelatedPass(7, scene4, camera);
-renderPixelatedPass.normalEdgeStrength = 0
-renderPixelatedPass.depthEdgeStrength = 0
+renderPixelatedPass2.normalEdgeStrength = 0
+renderPixelatedPass2.depthEdgeStrength = 0
 const dotScreenPass = new DotScreenPass(new THREE.Vector2(0, 0), 0, 0.7)
 // effectComposer.addPass(dotScreenPass)
 console.log(effectComposer)
@@ -346,6 +354,7 @@ const tick = () => {
 
 	// Call tick again on the next frame
 	window.requestAnimationFrame(tick)
+	stats.update()
 
 }
 tick()
