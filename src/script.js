@@ -7,12 +7,15 @@ import { DotScreenPass } from "three/examples/jsm/postprocessing/DotScreenPass"
 import { RenderPixelatedPass } from 'three/addons/postprocessing/RenderPixelatedPass.js';
 import { AfterimagePass } from "three/examples/jsm/postprocessing/AfterimagePass"
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
+import { getMixers } from './loader'
 
 // check for common mobile user agents
 if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
     // the user is using a mobile device, so redirect to the mobile version of the website
     window.location = "mobile/index.html";
 }
+
+
 
 
 /////////////////////////////////////////////////
@@ -185,8 +188,20 @@ directionalLight2.position.set(-25, -15, -10)
 scene1.add(directionalLight)
 scene2.add(directionalLight)
 scene3.add(directionalLight)
-scene4.add(directionalLight, directionalLight2, directionalLight3)
+scene4.add(directionalLight3)
 
+/**
+ * Camera
+ */
+// Base camera
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
+const camera2 = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000)
+
+scene0.add(camera)
+scene1.add(camera)
+scene2.add(camera)
+scene3.add(camera2)
+scene4.add(camera2)
 
 
 window.addEventListener('resize', () => {
@@ -205,18 +220,8 @@ window.addEventListener('resize', () => {
 	renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 })
 
-/**
- * Camera
- */
-// Base camera
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-const camera2 = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000)
 
-scene0.add(camera)
-scene1.add(camera)
-scene2.add(camera)
-scene3.add(camera2)
-scene4.add(camera2)
+
 
 
 /**
@@ -228,6 +233,7 @@ scene4.add(camera2)
 const renderer = new THREE.WebGLRenderer({
 	canvas: canvas
 })
+
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
@@ -246,10 +252,10 @@ const fog2 = new THREE.Fog('#bdbebf', 1, 100)
 scene3.fog = fog
 scene4.fog = fog2
 
-const renderPixelatedPass = new RenderPixelatedPass(7, scene3, camera2);
+const renderPixelatedPass = new RenderPixelatedPass(3, scene3, camera2);
 renderPixelatedPass.normalEdgeStrength = 0
 renderPixelatedPass.depthEdgeStrength = 0
-const renderPixelatedPass2 = new RenderPixelatedPass(7, scene4, camera);
+const renderPixelatedPass2 = new RenderPixelatedPass(3, scene4, camera);
 renderPixelatedPass2.normalEdgeStrength = 0
 renderPixelatedPass2.depthEdgeStrength = 0
 const dotScreenPass = new DotScreenPass(new THREE.Vector2(0, 0), 0, 0.7)
@@ -332,7 +338,8 @@ const clock = new THREE.Clock()
 
 const tick = () => {
 
-	const elapsedTime = clock.getElapsedTime()
+	// const elapsedTime = clock.getElapsedTime()
+	const delta = clock.getDelta();
 
 	// Update controls
 	camera.position.x += (cursor.x - camera.position.x) * 0.02;
@@ -346,14 +353,16 @@ const tick = () => {
 	camera.lookAt(0, 0, 0);
 	camera2.lookAt(0, 0, 0);
 
+	getMixers().forEach(mixer => mixer.update(delta));
+
 	// Render
 	// renderer.render(scene, camera)
 	effectComposer.render()
 
-
+	renderer.setAnimationLoop(tick)
 
 	// Call tick again on the next frame
-	window.requestAnimationFrame(tick)
+	// window.requestAnimationFrame(tick)
 	stats.update()
 
 }

@@ -1,0 +1,116 @@
+{
+	"Scene1": {
+		"PAGES": {
+			"Page0": {
+				"Character": "Instruction",
+				"PageText": "This is Mistakes and Memories demo. Press ENTER to proceed to the next page.",
+				"Back": "Empty"
+			},
+			"Page1": {
+				"Character": "Instruction",
+				"PageText": "Please use Chromium or Firefox for the best experience.",
+				"Back": "Empty"
+			},
+			"Page2": {
+				"Character": "???",
+				"PageText": "Everytime you see a child you want to cry.",
+				"Back": "Drone"
+			},
+			"Page3": {
+				"Character": "???",
+				"PageText": "You are not an average person."
+			},
+			"Page4": {
+				"Character": "???",
+				"PageText": "Yeah..."
+			},
+			"Page5": {
+				"Character": "Skay",
+				"PageText": "I'm Skay, by the way."
+				
+			},
+			"Page6": {
+				"Character": "Skay",
+				"PageText": "...",
+				"Back": "Cube"
+			},
+			"Page7": {
+				"Character": "Skay",
+				"PageText": "........."
+			},
+			"Page8": {
+				"Character": "Me",
+				"PageText": "Everything’s alright. Don’t worry.",
+				"Back": "Shed"
+			},
+			"Page9": {
+				"Character": "Me",
+				"PageText": "I just can’t wait do go to Mettlach tomorrow."
+			},
+			"Page10": {
+				"Character": "You?",
+				"PageText": "Riiight!"
+			},
+
+			"Page11": {
+				"Character": "You?",
+				"PageText": "Oh, by the way…"
+			},
+
+			"Page12": {
+				"Character": "You?",
+				"PageText": "I am finally taking a vacation the day after tomorrow, sooo I won’t be in Mettlach."
+			},
+
+			"Page13": {
+				"Character": "You?",
+				"PageText": "Is it OK?"
+			},
+
+			"Page14": {
+				"Character": "Me",
+				"PageText": "Sure!"
+			},
+
+			"Page15": {
+				"Character": "Me",
+				"PageText": "I was trying to play it cool, but I was hysterical. ",
+				"Back": "City"
+			},
+
+			"Page16": {
+				"Character": "Me",
+				"PageText": "It’s been a week since I moved to Mettlach. "
+			},
+
+			"Page17": {
+				"Character": "Me",
+				"PageText": "I have nightmares in my head. I am crying myself to sleep, while the mistake is spiralling in my head.  "
+			},
+
+			"Page18": {
+				"Character": "Me",
+				"PageText": "I am like a multi-headed monster and I like it.  "
+			},
+
+			"Page19": {
+				"Character": "You",
+				"PageText": "Don’t let your mind drive you crazy.  "
+			},
+
+			"Page20": {
+				"Character": "Me",
+				"PageText": " ",
+				"Options": {
+					"Finish?": "Page0",
+					"Restart?": "Page0"
+				}
+			},
+			"Page21": {
+				"Character": "Me",
+				"PageText": "End of demo",
+				"NextPage": "End"
+			}
+		}
+	}
+}

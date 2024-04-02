@@ -3,6 +3,8 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { scene1, scene2, scene3, scene4 } from './script'
 
+const mixers = [];
+
 const cubeMapLoader = new THREE.CubeTextureLoader()
 	.setPath('/cubeMaps/')
 	.load([
@@ -32,6 +34,12 @@ const updateAllMaterial = () => {
 	})
 
     scene3.traverse((child) => {
+		if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
+			child.material.envMap = cubeMapLoader
+		}
+	})
+
+	scene4.traverse((child) => {
 		if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
 			child.material.envMap = cubeMapLoader
 		}
@@ -93,23 +101,36 @@ gltfLoader.load(
 )
 
 gltfLoader.load(
-	'/model/city.glb',
-	(gltf) => {
-		// gltf.scene.scale.set(0.25, 0.25, 0.25)
-		gltf.scene.rotateY(160)
+    '/model/city-animated.glb',
+    (gltf) => {
+        // gltf.scene.scale.set(0.25, 0.25, 0.25)
+        gltf.scene.rotateY(160);
 
-		gltf.scene.position.y = -4
-		gltf.scene.position.x = 25
-		gltf.scene.position.z = -7
+        gltf.scene.position.y = -4;
+        gltf.scene.position.x = 25;
+        gltf.scene.position.z = -7;
 
-		scene4.add(gltf.scene)
+		const mixer = new THREE.AnimationMixer(gltf.scene);
+		gltf.animations.forEach((clip) => {
+			const action = mixer.clipAction(clip);
+			action.setLoop(THREE.LoopRepeat);
+			action.play();
+		});
 
-		updateAllMaterial()
-	}
-)
+		// Store the mixer
+		mixers.push(mixer);
+        scene4.add(gltf.scene);
+
+        updateAllMaterial();
+    }
+);
 
 function onTransitionEnd( event ) {
 
 	event.target.remove();
 	
+}
+
+export function getMixers() {
+    return mixers;
 }

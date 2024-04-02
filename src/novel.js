@@ -127,20 +127,27 @@ document.addEventListener('keydown', (e) => {
 		handleOptions(json);
 
 		if (json.Scene1.PAGES[currentPage].hasOwnProperty('Back')) {
-			if (json.Scene1.PAGES[currentPage].Back == "Cube") {
-				getCubeScene()
-			} else if (json.Scene1.PAGES[currentPage].Back == "Drone") { 
-				getDroneScene() 
-			} else if (json.Scene1.PAGES[currentPage].Back == "Shed") { 
-				getShedScene() 
-			} else if (json.Scene1.PAGES[currentPage].Back == "City") { 
-				getCityScene()
-			}else if (json.Scene1.PAGES[currentPage].Back == "Empty") {
-				getEmptyScene()
-			} else return
-	
-	
-		} else return
+			switch (json.Scene1.PAGES[currentPage].Back) {
+				case "Cube":
+					getCubeScene();
+					break;
+				case "Drone":
+					getDroneScene();
+					break;
+				case "Shed":
+					getShedScene();
+					break;
+				case "City":
+					getCityScene();
+					break;
+				case "Empty":
+					getEmptyScene();
+					break;
+				default:
+					return;
+			}
+		} else return;
+		
 	}
 	else return
 
